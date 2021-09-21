@@ -137,7 +137,7 @@ You will perform the following steps:
 1. <a href="#download-models">Use the Model Downloader to download suitable models.</a>
 2. <a href="#convert-models-to-intermediate-representation">Convert the models with the Model Optimizer.</a> 
 3. <a href="download-media">Download media files to run inference on.</a>
-4. Run inference on the sample and see the results.
+4. <a href="run-image-classification">Run inference on the sample and see the results.</a>
 
 ### Build Samples
 
@@ -278,3 +278,107 @@ mkdir ~/ir
 
 The Inference Engine can perform inference on different precision formats, such as FP32, FP16, INT8. To prepare an IR with specific precision, run the Model Optimizer with the appropriate `--data_type` option.
 
+**LINUX**:
+
+Run the Model Optimizer Script:
+
+```
+cd /opt/intel/openvino/deployment_tools/model_optimizer
+```
+
+`python3 ./mo_py --input_model <model_dir>/<model_file> --data_type <model_precision> --output_dir <ir_dir>`produced IR files are in the <ir_dir> directory.
+
+The actual command:
+
+```
+python3 ./mo.py --input_model ~/models/public/squeezenet1.1/squeezenet1.1.caffemodel --data_type FP16 --output_dir ~/models/public/squeezenet1.1/ir
+```
+
+### <a name="download-media"></a> Step 3: Download a Video or a Still Photo as Media
+
+Many sources are available from which you can download video media to use the code samples and demo applications. Possibilities include: 
+- https://videos.pexels.com
+- https://images.google.com
+
+As an alternative, the Intel® Distribution of OpenVINO™ toolkit includes two sample images that you can use for running code samples and demo applications:
+* `/opt/intel/openvino_2021/deployment_tools/demo/car.png`
+* `/opt/intel/openvino_2021/deployment_tools/demo/car_1.bmp`
+
+### <a name="run-image-classification"></a>Step 4: Run Inference on the Sample
+
+> **NOTE**: The Image Classification code sample is automatically compiled when you ran the Image Classification demo script. If you want to compile it manually, see the *Build the Sample Applications on Linux* section in the [Inference Engine Code Samples Overview](../IE_DG/Samples_Overview.md). 
+
+To run the **Image Classification** code sample with an input image on the IR: 
+
+1. Set up the OpenVINO environment variables:
+   ```sh
+   source /opt/intel/openvino_2021/bin/setupvars.sh
+   ``` 
+2. Go to the code samples build directory:
+   ```sh
+   cd ~/inference_engine_samples_build/intel64/Release
+   ```
+3. Run the code sample executable, specifying the input media file, the IR of your model, and a target device on which you want to perform inference:
+   ```sh
+   classification_sample_async -i <path_to_media> -m <path_to_model> -d <target_device>
+   ```
+<details>
+    <summary><strong>Click for examples of running the Image Classification code sample on different devices</strong></summary>
+
+The following commands run the Image Classification Code Sample using the `car.png` file from the `/opt/intel/openvino_2021/deployment_tools/demo/` directory as an input image, the IR of your model from `~/models/public/squeezenet1.1/ir` and on different hardware devices:
+
+**CPU:**
+   ```sh
+   ./classification_sample_async -i /opt/intel/openvino_2021/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d CPU
+   ```
+
+   **GPU:**
+   
+   > **NOTE**: Running inference on Intel® Processor Graphics (GPU) requires additional hardware configuration steps. For details, see the Steps for Intel® Processor Graphics (GPU) section in the [installation instructions](../install_guides/installing-openvino-linux.md).
+   ```sh
+   ./classification_sample_async -i /opt/intel/openvino_2021/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d GPU
+   ```
+   
+   **MYRIAD:** 
+
+   > **NOTE**: Running inference on VPU devices (Intel® Neural Compute Stick 2) with the MYRIAD plugin requires additional hardware configuration steps. For details, see the Steps for Intel® Neural Compute Stick 2 section in the [installation instructions](../install_guides/installing-openvino-linux.md).
+   ```sh   
+   ./classification_sample_async -i /opt/intel/openvino_2021/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d MYRIAD
+   ```
+   
+   **HDDL:**
+
+  > **NOTE**: Running inference on the Intel® Vision Accelerator Design with Intel® Movidius™ VPUs device with the HDDL plugin requires additional hardware configuration steps. For details, see the Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPUs section in the [installation instructions](../install_guides/installing-openvino-linux.md).
+  ```sh   
+  ./classification_sample_async -i /opt/intel/openvino_2021/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d HDDL
+  ```
+
+When the Sample Application completes, you see the label and confidence for the top-10 categories on the display. Below is a sample output with inference results on CPU:    
+```sh
+Top 10 results:
+
+Image /home/user/dldt/inference-engine/samples/sample_data/car.png
+
+classid probability label
+------- ----------- -----
+817     0.8363345   sports car, sport car
+511     0.0946488   convertible
+479     0.0419131   car wheel
+751     0.0091071   racer, race car, racing car
+436     0.0068161   beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon
+656     0.0037564   minivan
+586     0.0025741   half track
+717     0.0016069   pickup, pickup truck
+864     0.0012027   tow truck, tow car, wrecker
+581     0.0005882   grille, radiator grille
+
+
+total inference time: 2.6642941
+Average running time of one iteration: 2.6642941 ms
+
+Throughput: 375.3339402 FPS
+
+[ INFO ] Execution successful
+```
+
+</details>
