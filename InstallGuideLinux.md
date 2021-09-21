@@ -132,6 +132,9 @@ sudo ./install.sh -s silent.cfg
 9. A Complete screen indicates that the core components have been installed:
    ![](../img/openvino-install-linux-04.png)
 
+> **NOTE**: After you click Finish to close the installation wizard, a new browser window opens with the document you’re reading now (in case you installed without it) and jumps to the section on setting environment variables.
+
+
 The first core components are installed. Continue to the next section to install additional dependencies.
 
 ## <a name="install-external-dependencies"></a>Step 2: Install External Software Dependencies
