@@ -258,4 +258,23 @@ Your screen looks similar to this after the download:
 
 </details>  
 
+### Step 2: Convert the Model with Model Optimizer
+
+In this step, your trained models are ready to run through the Model Optimizer to convert them to the Intermediate Representation format. This is required before using the Inference Engine with the model.
+
+Models in the IR format always include an `.xml` and `.bin` file and may also include other files such as `.json` or `.mapping`. Make sure you have these files in the same directory for the Inference Engine to find them.
+
+REQUIRED: `model_name.xml` REQUIRED: `model_name.bin` OPTIONAL: `model_name.json`,  `model_name.mapping`, etc.
+
+This guide uses the public SqueezeNet 1.1 Caffe* model to run the Image Classification Sample. See the example to download a model in the Download Models section to learn how to download this model.
+
+The SqueezeNet1.1 model is downloaded in the Caffe* format. You must use the Model Optimizer to convert the model to the IR. The `vehicle-license-plate-detection-barrier-0106`, `vehicle-attributes-recognition-barrier-0039`, `license-plate-recognition-barrier-0001` models are downloaded in the Intermediate Representation format. You don't need to use the Model Optimizer to covert these models.
+
+Create an `<ir_dir>` directory to contain the model's Intermediate Representation (IR).
+
+```
+mkdir ~/ir
+```
+
+The Inference Engine can perform inference on different precision formats, such as FP32, FP16, INT8. To prepare an IR with specific precision, run the Model Optimizer with the appropriate `--data_type` option.
 
