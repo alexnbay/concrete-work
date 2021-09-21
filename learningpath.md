@@ -74,7 +74,7 @@ The primary tools for deploying your models and applications are installed to th
 
 </details>
 
-**MacOS**
+**macOS**
 
 This guide assumes you completed all Intel® Distribution of OpenVINO™ toolkit installation and configuration steps. If you have not yet installed and configured the toolkit, see [Install Intel® Distribution of OpenVINO™ toolkit for macOS*](../install_guides/installing-openvino-macos.md).
 
