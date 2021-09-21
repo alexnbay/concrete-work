@@ -382,3 +382,93 @@ Throughput: 375.3339402 FPS
 ```
 
 </details>
+
+## Exercises
+
+The following series of exercises guide you through using samples of increasing complexity. As you move through each exercise you will get a sense of how to use OpenVINO™ in more sophisticated use cases.
+
+In these exercises, you will:
+1. Convert and optimize a neural network model to work on Intel® hardware.
+2. Run computer vision applications using optimized models and appropriate media.
+   -During optimization with the DL Workbench™, a subset of ImageNet* and VOC* images are used.
+   -When running samples, we'll use either an image or video file located on this system.
+> **NOTE**: Before starting these sample exercises, change directories into the samples directory:
+> ```
+> cd ~/omz_demos_build/intel64/Release
+> ```
+
+
+> **NOTE**: During this exercise you will move to multiple directories and occasionally copy files so that you don't have to specify full paths in commands. You are welcome to set up environment variables to make these tasks easier, but we leave that to you.
+
+
+> **REMEMBER**: When using OpenVINO™ from the command line, you must set up your environment whenever you change users or launch a new terminal.
+> ```
+> source /opt/intel/openvino/bin/setupvars.sh
+> ```
+
+
+### Exercise 1: Run A Sample Application
+Convert a model using the Model Optimizer then use a sample application to load the model and run inference.
+
+In this section, you will convert an FP32 model suitable for running on a CPU.
+
+**Prepare the Software Environment**
+
+1. Set up the environment variables when logging in, changing users, or launching a new terminal. (Detail above.)
+2. Make a destination directory for the FP32 SqueezeNet* Model:
+```
+mkdir ~/squeezenet1.1_FP32
+cd ~/squeezenet1.1_FP32
+```
+*\*Convert and Optimize a Neural Network Model from Caffe*
+
+Use the Model Optimizer to convert an FP32 SqueezeNet* Caffe* model into an optimized Intermediate Representation (IR):
+```
+python3 /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model ~/openvino_models/models/public/squeezenet1.1/squeezenet1.1.caffemodel --data_type FP32 --output_dir .
+```
+**Prepare the Data (Media) or Dataset**
+
+> **NOTE**: In this case, it's a single image.
+
+1. Copy the labels file to the same location as the IR model.
+```
+cp /opt/intel/openvino/deployment_tools/demo/squeezenet1.1.labels .
+```
+   - Tip: The labels file contains the classes used by this SqueezeNet* model.
+   - If it's is in the same directory as the model, the inference results will show text in addition to confidence percentages.
+  
+2. Copy a sample image to the current directory. You will use this with your optimized model:
+```
+sudo cp /opt/intel/openvino/deployment_tools/demo/car.png .
+```
+
+**Run the Sample Application**
+
+Once your setup is complete, you're ready to run a sample application:
+```
+~/inference_engine_samples_build/intel64/Release/classification_sample_async -i car.png -m ~/squeezenet1.1_FP32/squeezenet1.1.xml -d CPU
+```
+
+> **NOTE**: You can usually see an application's help information (parameters, etc.) by using the --h option.
+> ```
+> ~/inference_engine_samples_build/intel64/Release/classification_sample_async -h
+> ```
+
+
+If desired, you can look at the original image using the Eye of Gnome application (installed by default on Ubuntu systems):
+```
+eog car.png
+```
+
+
+## Other Demos/Samples
+
+For more samples and demos, you can visit the samples and demos pages. You can review samples and demos by complexity or by usage.
+
+[Samples](../IE_DG/Samples_Overview.md)
+
+[Demos](https://docs.openvinotoolkit.org/latest/omz_demos.html)
+
+For Example – Classification by Usage (examples – it is not exhaustive)
+< Image Missing >
+![](../img/img_path_her.jpg)
