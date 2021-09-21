@@ -67,15 +67,15 @@ This guide provides step-by-step instructions on how to install the Intel® Dist
 1. <a href="#install-openvino">Install the Intel® Distribution of OpenVINO™ Toolkit </a>
 2. <a href="#install-external-dependencies">Install External software dependencies</a>
 3. <a href="#set-the-environment-variables">Configure the Environment</a>
-4. <a href="#additional-GPU-steps">Steps for Intel® Processor Graphics (GPU)</a>
 
 **Configure inference on non-CPU devices:**
-
-- <a href="#additional-NCS-steps">Steps for Intel® Neural Compute Stick 2</a>
-- <a href="#install-VPU">Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPU</a><br>
-After installing your Intel® Movidius™ VPU, you will return to this guide to complete OpenVINO™ installation.
-- <a href="#get-started">Get Started with Code Samples and Demo Applications</a>
-- <a href="#uninstall">Steps to uninstall the Intel® Distribution of OpenVINO™ Toolkit.</a>
+   - <a href="#additional-GPU-steps">Steps for Intel® Processor Graphics (GPU)</a>
+   - <a href="#additional-NCS-steps">Steps for Intel® Neural Compute Stick 2</a>
+   - <a href="#install-VPU">Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPU</a><br>
+   After installing your Intel® Movidius™ VPU, you will return to this guide to complete OpenVINO™ installation.<br>
+   
+<a href="#get-started">Get Started with Code Samples and Demo Applications</a><br>
+[Steps to uninstall the Intel® Distribution of OpenVINO™ Toolkit.](../uninstalling-openvino.md)
 
 ## <a name="install-openvino"></a>Step 1: Install the Intel® Distribution of OpenVINO™ Toolkit Core Components
 
@@ -318,31 +318,6 @@ Now you are ready to get started. To continue, see the following pages:
 * [OpenVINO™ Toolkit Overview](../index.md)
 * [Get Started Guide for Linux](../get_started/get_started_linux.md) to learn the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
 
-## <a name="uninstall"></a>Uninstall the Intel® Distribution of OpenVINO™ Toolkit
-Choose one of the options provided below to uninstall the Intel® Distribution of OpenVINO™ Toolkit from your system.
-
-### Uninstall with GUI
-1. Run the uninstallation script from `<INSTALL_DIR>/openvino_toolkit_uninstaller`:
-   ```sh
-   sudo ./uninstall_GUI.sh
-   ```
-2. Follow the uninstallation wizard instructions.
-
-
-### Uninstall with Command Line (Interactive Mode)
-1. Run the uninstallation script from `<INSTALL_DIR>/openvino_toolkit_uninstaller`:
-   ```sh
-   sudo ./uninstall.sh
-   ```
-2. Follow the instructions on your screen.
-4. When uninstallation is complete, press **Enter**.
-
-### Uninstall with Command Line (Silent Mode)
-1. Run the following command from `<INSTALL_DIR>/openvino_toolkit_uninstaller`:
-   ```sh
-   sudo ./uninstall.sh -s
-   ```
-2. Intel® Distribution of OpenVINO™ Toolkit is now uninstalled from your system.
 
 ## Troubleshooting
 
