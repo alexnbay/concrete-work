@@ -406,6 +406,8 @@ In these exercises, you will:
 > source /opt/intel/openvino/bin/setupvars.sh
 > ```
 
+<details>
+    <summary>Exercise 1: Run A Sample Application</summary>
 
 ### Exercise 1: Run A Sample Application
 Convert a model using the Model Optimizer then use a sample application to load the model and run inference.
@@ -459,11 +461,13 @@ If desired, you can look at the original image using the Eye of Gnome applicatio
 ```
 eog car.png
 ```
+	
+</details>
 
 <details>
     <summary>Exercise 2: Human Pose Estimation</summary>
     
-### Exercise 2
+### Exercise 2: Human Pose Estimation
 
 This demo detects people and draws a stick figure to show limb positions. This model has already been converted for use with the Intel® Distribution of OpenVINO™ toolkit.
 
@@ -520,6 +524,8 @@ https://www.pexels.com/video/couple-dancing-on-sunset-background-2035509/
 <details>
     <summary>Exercise 3: Interactive Face Detection</summary>
 
+### Exercise 3: Interactive Face Detection
+	
 The face detection demo draws bounding boxes around faces, and optionally feeds the output of the primary model to additional models. This model has already been converted for use with OpenVINO™.
 
 The Face Detection Demo supports face detection, plus optional functions:
@@ -546,6 +552,8 @@ Steps:
 
 <details>
 	<summary>Exercise 4: DL Streamer</summary>
+	
+### Exercise 4: DL Streamer
 	
 The DL Streamer is a command-line tool and API for integrating OpenVINO into a media analytics pipeline.  It supports OpenVINO, GStreamer, Mosquitto, Kafka, and a variety of other technologies.
 
