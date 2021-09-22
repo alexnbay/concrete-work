@@ -9,8 +9,7 @@
 
 ## Toolkit Components
 
-< IE Dev Guide Image Here>
- ![](../img/your-img-path.png)
+ ![](../../IE_DG/img/workflow_steps.png)
  
  The basic steps to use the software are as follows:
  1. **Get a trained model** for your inference task. Example inference tasks: pedestrian detection, face detection, vehicle detection, license plate recognition, head pose.
