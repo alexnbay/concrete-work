@@ -460,6 +460,100 @@ If desired, you can look at the original image using the Eye of Gnome applicatio
 eog car.png
 ```
 
+<details>
+    <summary>Exercise 2: Human Pose Estimation</summary>
+    
+### Exercise 2
+
+This demo detects people and draws a stick figure to show limb positions. This model has already been converted for use with the Intel® Distribution of OpenVINO™ toolkit.
+
+- Requires downloading the human-pose-estimation-0001 (ICV) Model.
+- Requires video or camera input.
+
+Example Syntax:
+
+- human_pose_estimation_demo -i path/to/video -m path/to/model/human-pose-estimation-0001.xml -d CPU
+
+**Steps to Run the Human Pose Demo:**
+
+1. Set up the environment variables:
+
+    `source /opt/intel/openvino/bin/setupvars.sh`
+
+2. Move to the Model Downloader Directory:
+
+    `cd /opt/intel/openvino/deployment_tools/tools/model_downloader/`
+
+3. Find a suitable model:
+
+    `python3 info_dumper.py --print_all |grep pose`
+
+**Note:** `info_dumper.py` is a script that can list details about every model available in the Intel® Model Zoo. Models can also be manually downloaded from the Open Model Zoo GitHub page.
+
+4. Download the model:
+
+    `sudo ./downloader.py --name human-pose*`
+
+5. Move the model to a more convenient location:
+
+    `mkdir ~/ir`
+
+    `cp /opt/intel/openvino/deployment_tools/tools/model_downloader/intel/human-pose-estimation-0001/FP32/human-pose-estimation-0001* ~/ir/`
+
+6. Download an appropriate video:
+
+    Open a web browser to the following URL and download the video: 
+https://www.pexels.com/video/couple-dancing-on-sunset-background-2035509/
+
+    Rename the video for convenience:
+
+    `mv ~/Downloads/Pexels\ Videos\ 2035509.mp4 ~/Videos/humpose.mp4`
+
+7. Run the sample:
+
+    `cd ~/omz_demos_build/intel64/Release/`
+
+    `./human_pose_estimation_demo -i ~/Videos/humpose.mp4 -m ~/ir/human-pose-estimation-0001.xml -d CPU`
+
+</details>
+
+<details>
+    <summary>Exercise 3: Interactive Face Detection</summary>
+
+The face detection demo draws bounding boxes around faces, and optionally feeds the output of the primary model to additional models. This model has already been converted for use with OpenVINO™.
+
+The Face Detection Demo supports face detection, plus optional functions:
+
+- Age-gender recognition
+- Emotion recognition
+- Head pose
+- Facial landmark display
+
+Example Syntax:
+- interactive_face_detection_demo -i path/to/video -m path/to/face/model -d CPU
+
+Steps:
+
+1.	Find and download an appropriate face detection model.  There are several available in the Intel® Model Zoo.
+    - You can access the [Pretrained Models](https://software.intel.com/en-us/openvino-toolkit/documentation/pretrained-models) page from the OpenVINO™ documentation to review model options.
+    - You may need to try out different models to find one that works, or that works best for your scenario.
+2.	Find and download a video that features faces.
+3.	Run the demo with just the face detection model.
+4.	**OPTIONAL:** Run the demo using additional models (age-gender, emotion recognition, head pose, etc.).
+    Note that when you use multiple models, there is always a primary model that is used followed by a number of optional models that use the output from the initial model.
+
+</details>
+
+<details>
+	<summary>Exercise 4: DL Streamer</summary>
+	
+The DL Streamer is a command-line tool and API for integrating OpenVINO into a media analytics pipeline.  It supports OpenVINO, GStreamer, Mosquitto, Kafka, and a variety of other technologies.
+
+Follow the link below, read through the documentation, then do the tutorial.
+	
+[DL Streamer Documentation and Tutorial](DL_Streamer/README.md)
+</details>
+
 
 ## Other Demos/Samples
 
